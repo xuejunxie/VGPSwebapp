@@ -3,8 +3,6 @@ var constraints = { video: { facingMode: "environment" }, audio: false };
 var track = null;
 
 var form = new FormData();
-form.append("test", cameraOutput.src);
-
 var settings = {
   "async": true,
   "crossDomain": true,
@@ -46,6 +44,8 @@ cameraTrigger.onclick = function() {
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
     cameraOutput.src = cameraSensor.toDataURL("image/webp");
     cameraOutput.classList.add("taken");
+
+    form.append("test", cameraOutput.src);
     $.ajax(settings).done(function (response) {
   console.log(response);
 });
