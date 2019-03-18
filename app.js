@@ -1,9 +1,10 @@
 // Set constraints for the video stream
-var constraints = { video: { facingMode: "user" }, audio: false };
+var constraints = { video: { facingMode: "environment" }, audio: false };
 var track = null;
 
 // Define constants
 const cameraView = document.querySelector("#camera--view"),
+    testLog = document.querySelector("test--log"),
     cameraOutput = document.querySelector("#camera--output"),
     cameraSensor = document.querySelector("#camera--sensor"),
     cameraTrigger = document.querySelector("#camera--trigger");
@@ -28,6 +29,7 @@ cameraTrigger.onclick = function() {
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
     cameraOutput.src = cameraSensor.toDataURL("image/webp");
     cameraOutput.classList.add("taken");
+    testLog.innerHTML = cameraOutput.src;
     // track.stop();
 };
 
