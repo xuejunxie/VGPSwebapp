@@ -2,6 +2,24 @@
 var constraints = { video: { facingMode: "environment" }, audio: false };
 var track = null;
 
+var form = new FormData();
+form.append("test", cameraOutput.src);
+
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "http://xuejun.asuscomm.com:8080",
+  "method": "POST",
+  "headers": {
+    "cache-control": "no-cache",
+    "Postman-Token": "a2eadc25-061d-47b1-b1bc-09ba2e838ef9"
+  },
+  "processData": false,
+  "contentType": false,
+  "mimeType": "multipart/form-data",
+  "data": form
+}
+
 // Define constants
 const cameraView = document.querySelector("#camera--view"),
     cameraOutput = document.querySelector("#camera--output"),
@@ -28,6 +46,9 @@ cameraTrigger.onclick = function() {
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
     cameraOutput.src = cameraSensor.toDataURL("image/webp");
     cameraOutput.classList.add("taken");
+    $.ajax(settings).done(function (response) {
+  console.log(response);
+});
     // track.stop();
 };
 
