@@ -2,21 +2,21 @@
 var constraints = { video: { facingMode: "environment" }, audio: false };
 var track = null;
 
-var form = new FormData();
-var settings = {
-  "async": true,
-  "crossDomain": true,
-  "url": "http://xuejun.asuscomm.com:8080",
-  "method": "POST",
-  "headers": {
-    "cache-control": "no-cache",
-    "Postman-Token": "a2eadc25-061d-47b1-b1bc-09ba2e838ef9"
-  },
-  "processData": false,
-  "contentType": false,
-  "mimeType": "multipart/form-data",
-  "data": form
-}
+// var form = new FormData();
+// var settings = {
+//   "async": true,
+//   "crossDomain": true,
+//   "url": "http://xuejun.asuscomm.com:8080",
+//   "method": "POST",
+//   "headers": {
+//     "cache-control": "no-cache",
+//     "Postman-Token": "a2eadc25-061d-47b1-b1bc-09ba2e838ef9"
+//   },
+//   "processData": false,
+//   "contentType": false,
+//   "mimeType": "multipart/form-data",
+//   "data": form
+// }
 
 // Define constants
 const cameraView = document.querySelector("#camera--view"),
@@ -45,10 +45,27 @@ cameraTrigger.onclick = function() {
     cameraOutput.src = cameraSensor.toDataURL("image/webp");
     cameraOutput.classList.add("taken");
 
-    form.append("test", cameraOutput.src);
-    $.ajax(settings).done(function (response) {
-  console.log(response);
-});
+    var data = new FormData();
+    data.append("test", cameraOutput.src);
+
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+
+    xhr.addEventListener("readystatechange", function () {
+      if (this.readyState === 4) {
+        console.log(this.responseText);
+      }
+    });
+
+    xhr.open("POST", "http://xuejun.asuscomm.com:8080");
+    xhr.setRequestHeader("cache-control", "no-cache");
+
+    xhr.send(data);    
+
+//     form.append("test", cameraOutput.src);
+//     $.ajax(settings).done(function (response) {
+//   console.log(response);
+// });
     // track.stop();
 };
 
