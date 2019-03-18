@@ -4,7 +4,7 @@ var track = null;
 
 // Define constants
 const cameraView = document.querySelector("#camera--view"),
-    testLog = document.querySelector("test--log"),
+    // testLog = document.querySelector("test--log"),
     cameraOutput = document.querySelector("#camera--output"),
     cameraSensor = document.querySelector("#camera--sensor"),
     cameraTrigger = document.querySelector("#camera--trigger");
@@ -29,7 +29,9 @@ cameraTrigger.onclick = function() {
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
     cameraOutput.src = cameraSensor.toDataURL("image/webp");
     cameraOutput.classList.add("taken");
-    testLog.innerHTML = cameraOutput.src;
+    // testLog.innerHTML = cameraOutput.src;
+    cameraSensor.font = "30px Arial";
+    cameraSensor.fillText = (cameraOutput.src, 10, 50);
     // track.stop();
 };
 
