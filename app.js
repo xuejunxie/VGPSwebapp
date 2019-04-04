@@ -59,7 +59,7 @@ cameraTrigger.onclick = function() {
 
     xhr.open("POST", "http://xuejun.asuscomm.com:8080");
     xhr.setRequestHeader("cache-control", "no-cache");
-    xhr.setRequestHeader("Access-Control-Allow-Origin:", "<origin> | *");
+    // xhr.setRequestHeader("Access-Control-Allow-Origin:", "<origin> | *");
 
     xhr.send(data);    
 
