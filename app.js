@@ -57,7 +57,7 @@ cameraTrigger.onclick = function() {
       }
     });
 
-    xhr.open("POST", "http://xuejun.asuscomm.com:8080");
+    xhr.open("POST", "https://xuejun.asuscomm.com:8080");
     xhr.setRequestHeader("cache-control", "no-cache");
     // xhr.setRequestHeader("Access-Control-Allow-Origin:", "<origin> | *");
 
